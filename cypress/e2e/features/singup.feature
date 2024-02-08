@@ -1,10 +1,10 @@
 Feature: Sing Up
 
-    Feature to signup new user on Victor Hugo site.
+    Feature to signup new user on demoblaze Store.
 
     Background:
-        Given que o usuario acessou a pagina de cadastro
+        Given i'm on the signup page
 
-    Scenario: Validar cadastro com sucesso
-        When preencher todos os campos e clicar em cadastrar
-        Then o cadastro deverá ser concluido com sucesso
+    Scenario: Validating sigunp with success
+        When provide all access data
+        Then the message "Sign up successful." should be displayed

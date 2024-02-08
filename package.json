@@ -27,6 +27,8 @@
     "multiple-cucumber-html-reporter": "^3.0.1"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "faker": "^6.6.6",
     "faker-br": "^0.4.1"
   }
 }

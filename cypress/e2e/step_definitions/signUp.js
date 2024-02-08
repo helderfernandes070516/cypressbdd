@@ -5,16 +5,17 @@ import {
 } from "@badeball/cypress-cucumber-preprocessor";
 import { signUpPage } from '@pages/SignUpPage'
 
-Given("que o usuario acessou a pagina de cadastro", () => {
-    
+Given("i'm on the signup page", () => {
+    cy.visit('/')
+    cy.get('#nava').should('be.visible')
 })
 
-When("preencher todos os campos e clicar em cadastrar", (email) => {
-    recoveryPasswordPage.submitRecoveryPassword(email)
-    recoveryPasswordPage.elements.recoveryPasswordSubmit().click()
+When("provide all access data", () => {
+    signUpPage.submitNewUser()
 })
 
-Then("clicar no link esqueci minha senha, informar o e-mail {string} e clicar em recuperar senha", (email) => {
-    recoveryPasswordPage.submitRecoveryPassword(email)
-    recoveryPasswordPage.elements.recoveryPasswordSubmit().click()
+Then("the message {string} should be displayed", (message) => {
+    cy.on('window:alert', (t) => {
+        expect(t).to.contains('Sign up successful.')
+    })
 })

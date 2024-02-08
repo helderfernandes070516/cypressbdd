@@ -1,35 +1,34 @@
 import {
-  Given,
-  When,
-  Then,
+    Given,
+    When,
+    Then,
 } from "@badeball/cypress-cucumber-preprocessor";
-import {loginPage} from '@pages/LoginPage'
+import { loginPage } from '@pages/LoginPage'
 
-Given("A web browser is at the saucelabs login page", () => {
-  cy.visit("/");
+Given('im on the login page', () => {
+    cy.visit("/")
+    loginPage.clickLoginHome()
+    cy.wait(2000)
 });
 
-When("A user enters the username {string}, the password {string}, and clicks on the login button", (username,password) => {
-  loginPage.submitLogin(username,password)
-  
+When("i input the {string} username and {string} password and click on login button", (username, password) => {
+    loginPage.typeUsername(username)
+    loginPage.typePassword(password)
+    cy.wait(2000)
+    loginPage.clickLoginButton()
 });
 
-When("A user provides incorrect credentials, and clicks on the login button", (table) => {
-  table.hashes().forEach((row) => {
-    cy.log(row.username);
-    cy.log(row.password);
-    loginPage.submitLogin(row.username, row.password)
+Then("the login is done and the name {string} is displayed on the footer", (welcomemessage) => {
+    cy.wait(3000);
+    cy.get('#nameofuser').contains(welcomemessage)
 
-  });
-});
-Then("the url will contains the inventory subdirectory", () => {
-  cy.url().should("contains", "/inventory.html");
-});
-Then("The error message {string} is displayed", (errorMessage) => {
-  loginPage.elements.errorMessage().should("have.text", errorMessage);
-});
+})
 
-Given("que eu esteja na tela de pré cadastro para Internação", () => {
-  
-});
+When("i make login with success and click on the logout button", () => {
+    loginPage.submitLoginSuccess()
+    loginPage.clickLogout()
+})
 
+Then("the welcome message to the username will desapear", () => {
+    cy.get('#nameofuser').should('not.be.visible')
+})

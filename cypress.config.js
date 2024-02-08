@@ -25,7 +25,7 @@ module.exports = defineConfig({
     defaultCommandTimeout: 25000,
     setupNodeEvents,
     specPattern: "cypress/e2e/features/*.feature",
-    baseUrl: "https://victorhugo-git-develop-mkplace.vercel.app/",
+    baseUrl: "https://www.demoblaze.com/",
     chromeWebSecurity: false,
     env: {
       allureReuseAfterSpec: true,

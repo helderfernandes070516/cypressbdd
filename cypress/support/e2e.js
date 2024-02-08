@@ -16,8 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import '@shelex/cypress-allure-plugin';
-import 'cypress-xpath'
-import faker from 'faker-br';
+import 'cypress-xpath';
+import { Faker } from '@faker-js/faker';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

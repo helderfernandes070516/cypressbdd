@@ -1,28 +1,22 @@
-import faker from "faker-br";
-
+import { faker } from "@faker-js/faker";
+const fakerEmail = faker.internet.email()
 class SignUpPage {
-    elements = {
-      nameInput: () => cy.getByTestId("sign-up-name-input"),
-      documentInput: () => cy.getByTestId("sign-up-document-input"),
-      birthdateInput: () => cy.getByTestId("sign-up-birthdate-input"),
-      phoneInput: () => cy.getByTestId('sign-up-phone-input'),
-      emailInput: () => cy.getByTestId('sign-up-email-input'),
-      passwordInput: () => cy.getByTestId('sign-up-password-input'),
-      passwordVerifyInput: () => cy.getByTestId('sign-up-passwordVerify-input'),
-      signupButton: () => cy.getByTestId('sign-up-submit-button'),
-      signupButton: () => cy.getByTestId('sign-up-submit-button')
-    };
-    
-  submitRecoveryPassword(email){
+  elements = {
+    signupButtonHome: () => cy.get('#signin2'),
+    signupButton: () => cy.get('#signInModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary'),
+    inputUsername: () => cy.get('#sign-username'),
+    inputPassword: () => cy.get('#sign-password'),
+  };
 
-    faker = faker.br.cpf()
-      this.elements.recoveryPasswordButton().click()
-      this.elements.recoveryPasswordInput().type(faker.br.cpf())
-    }
+
+
+  submitNewUser() {
+
+    this.elements.signupButtonHome().click()
+    this.elements.inputUsername().type(fakerEmail)
+    this.elements.inputPassword().type('123456789')
+    this.elements.signupButton().click()
   }
+}
 
-
-
-
-    
 export const signUpPage = new SignUpPage();
